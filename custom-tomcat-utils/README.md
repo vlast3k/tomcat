@@ -1,9 +1,9 @@
 # custom-tomcat-utils
 
-SimpleRequestDumperFilter
+## SimpleRequestDumperFilter
 ------------------------
-${CATALINA_HOME}/conf/Server.xml:
-
+**${CATALINA_HOME}/conf/Server.xml:**
+```xml
 <filter>
 	<filter-name>requestdumper</filter-name>
 	<filter-class>es.sisifo.tomcatutil.filters.SimpleRequestDumperFilter</filter-class>
@@ -12,10 +12,10 @@ ${CATALINA_HOME}/conf/Server.xml:
 	<filter-name>requestdumper</filter-name>
 	<url-pattern>*</url-pattern>
 </filter-mapping>
+```
 
-
-${CATALINA_HOME}/conf/logging.propertie:
-
+**${CATALINA_HOME}/conf/logging.propertie:**
+```shell
 handlers = (...), 5request-dumper.org.apache.juli.FileHandler
 (....)
 5request-dumper.org.apache.juli.FileHandler.level = INFO
@@ -25,3 +25,4 @@ handlers = (...), 5request-dumper.org.apache.juli.FileHandler
 es.sisifo.tomcatutil.filters.SimpleRequestDumperFilter.level = INFO
 es.sisifo.tomcatutil.filters.SimpleRequestDumperFilter.handlers = \
 5request-dumper.org.apache.juli.FileHandler
+```
