@@ -1,0 +1,10 @@
+es\sisifo\tomcatutil\filters\ResettableStreamHttpServletRequest$ResettableServletInputStream.class
+es\sisifo\tomcatutil\filters\ResettableStreamHttpServletRequest.class
+es\sisifo\tomcatutil\filters\CopyableStreamHttpServletResponse$ResettableServletOutputStream.class
+es\sisifo\tomcatutil\filters\ResettableStreamHttpServletRequest$1.class
+es\sisifo\tomcatutil\filters\SimpleRequestDumperFilter$1.class
+es\sisifo\tomcatutil\filters\SimpleRequestDumperFilter$Timestamp.class
+es\sisifo\tomcatutil\filters\SimpleRequestDumperFilter.class
+es\sisifo\tomcatutil\filters\CopyableStreamHttpServletResponse$1.class
+es\sisifo\tomcatutil\filters\CopyableStreamHttpServletResponse.class
+es\sisifo\tomcatutil\util\IOUtil.class

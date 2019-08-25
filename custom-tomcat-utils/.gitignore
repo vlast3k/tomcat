@@ -1,4 +1,6 @@
-/target/
-.classpaht
+/target/classes
+/target/maven-archiver
+/target/test-classes
+.classpath
 .project
 .settings

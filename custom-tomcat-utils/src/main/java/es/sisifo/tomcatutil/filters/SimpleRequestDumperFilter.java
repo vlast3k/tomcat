@@ -46,7 +46,7 @@ public class SimpleRequestDumperFilter implements Filter {
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public synchronized void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		if (!(request instanceof HttpServletRequest) || !(response instanceof HttpServletResponse)) {
 			LOG.info(Thread.currentThread().getName() + " Non HTTP Request or Response. Skip filter");
 			chain.doFilter(request, response);
@@ -81,15 +81,15 @@ public class SimpleRequestDumperFilter implements Filter {
 		doLog("        requestURI", wrappedRequest.getRequestURI());
 		doLog("          authType", wrappedRequest.getAuthType());
 
-		doLog(" characterEncoding", wrappedRequest.getCharacterEncoding());
-		doLog("     contentLength", Integer.valueOf(wrappedRequest.getContentLength()).toString());
+//		doLog(" characterEncoding", wrappedRequest.getCharacterEncoding());
+//		doLog("     contentLength", Integer.valueOf(wrappedRequest.getContentLength()).toString());
 		doLog("       contentType", wrappedRequest.getContentType());
 		doLog("       contextPath", wrappedRequest.getContextPath());
 
-		logRequestCookies(wrappedRequest);
+//		logRequestCookies(wrappedRequest);
 		logRequestHeaders(wrappedRequest);
 
-		doLog("            locale", wrappedRequest.getLocale().toString());
+//		doLog("            locale", wrappedRequest.getLocale().toString());
 		doLog("            method", wrappedRequest.getMethod());
 
 		logRequestParameters(wrappedRequest);
@@ -98,15 +98,15 @@ public class SimpleRequestDumperFilter implements Filter {
 
 		doLog("          protocol", wrappedRequest.getProtocol());
 		doLog("       queryString", wrappedRequest.getQueryString());
-		doLog("        remoteAddr", wrappedRequest.getRemoteAddr());
-		doLog("        remoteHost", wrappedRequest.getRemoteHost());
-		doLog("        remoteUser", wrappedRequest.getRemoteUser());
-		doLog("requestedSessionId", wrappedRequest.getRequestedSessionId());
-		doLog("            scheme", wrappedRequest.getScheme());
-		doLog("        serverName", wrappedRequest.getServerName());
-		doLog("        serverPort", Integer.valueOf(wrappedRequest.getServerPort()).toString());
+//		doLog("        remoteAddr", wrappedRequest.getRemoteAddr());
+//		doLog("        remoteHost", wrappedRequest.getRemoteHost());
+//		doLog("        remoteUser", wrappedRequest.getRemoteUser());
+//		doLog("requestedSessionId", wrappedRequest.getRequestedSessionId());
+//		doLog("            scheme", wrappedRequest.getScheme());
+//		doLog("        serverName", wrappedRequest.getServerName());
+//		doLog("        serverPort", Integer.valueOf(wrappedRequest.getServerPort()).toString());
 		doLog("       servletPath", wrappedRequest.getServletPath());
-		doLog("          isSecure", Boolean.valueOf(wrappedRequest.isSecure()).toString());
+//		doLog("          isSecure", Boolean.valueOf(wrappedRequest.isSecure()).toString());
 		doLog("          authType", wrappedRequest.getAuthType());
 		doLog("        remoteUser", wrappedRequest.getRemoteUser());
 	}
@@ -135,12 +135,13 @@ public class SimpleRequestDumperFilter implements Filter {
 
 	private void logRequestParameters(final ResettableStreamHttpServletRequest wrappedRequest) throws IOException {
 		final String body = IOUtil.toString(wrappedRequest.getReader());
-		if (body != null && !body.trim().equals("")){
-			final String[] paramValues = body.split("&");
-			for (final String paramValue : paramValues) {
-				doLog("         parameter", paramValue);
-			}
-		}
+		doLog("         body", body);
+//		if (body != null && !body.trim().equals("")){
+//			final String[] paramValues = body.split("&");
+//			for (final String paramValue : paramValues) {
+//				doLog("         parameter", paramValue);
+//			}
+//		}
 		wrappedRequest.resetInputStream();
 	}
 
