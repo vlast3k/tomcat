@@ -3,8 +3,12 @@ package es.sisifo.tomcatutil.filters;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -93,6 +97,12 @@ public class SimpleRequestDumperFilter implements Filter {
 		doLog("            method", wrappedRequest.getMethod());
 
 		logRequestParameters(wrappedRequest);
+		//.wrappedRequest.Collection wrappedRequest.getParameterMap()
+		Map<String, String[]> parameterMap = wrappedRequest.getParameterMap();
+		for (Entry<String, String[]> entry : parameterMap.entrySet()) {
+			doLog("             param", entry.getKey() + "=" + Arrays.toString(entry.getValue()));
+		}
+		doLog("            params", wrappedRequest.getParameterMap().toString());
 
 		doLog("          pathInfo", wrappedRequest.getPathInfo());
 
